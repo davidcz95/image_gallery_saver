@@ -3,7 +3,7 @@ import UIKit
 import Photos
 
 public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
-    let errorMessage = "Failed to save, please check whether the permission is enabled"
+    let errorMessage = "保存失败,请检查权限是否开启"
     
     var result: FlutterResult?;
 
@@ -24,24 +24,7 @@ public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
             let isReturnImagePath = arguments["isReturnImagePathOfIOS"] as? Bool
             else { return }
         let newImage = image.jpegData(compressionQuality: CGFloat(quality / 100))!
-        saveImage(UIImage(data: newImage) ?? image, isReturnImagePath: isReturnImagePath)
-      } else if (call.method == "saveFileToGallery") {
-        guard let arguments = call.arguments as? [String: Any],
-              let path = arguments["file"] as? String,
-              let _ = arguments["name"],
-              let isReturnFilePath = arguments["isReturnPathOfIOS"] as? Bool else { return }
-        if (isImageFile(filename: path)) {
-            saveImageAtFileUrl(path, isReturnImagePath: isReturnFilePath)
-        } else {
-            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(path)) {
-                saveVideo(path, isReturnImagePath: isReturnFilePath)
-            }else{
-                self.saveResult(isSuccess:false,error:self.errorMessage)
-            }
-        }
           saveToPath(UIImage(data: newImage) ?? image,name: name)
-
-
       } else {
         result(FlutterMethodNotImplemented)
       }
