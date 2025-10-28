@@ -24,8 +24,6 @@ public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
             let isReturnImagePath = arguments["isReturnImagePathOfIOS"] as? Bool
             else { return }
         let newImage = image.jpegData(compressionQuality: CGFloat(quality / 100))!
-<<<<<<< HEAD
-<<<<<<< HEAD
         saveImage(UIImage(data: newImage) ?? image, isReturnImagePath: isReturnImagePath)
       } else if (call.method == "saveFileToGallery") {
         guard let arguments = call.arguments as? [String: Any],
@@ -41,12 +39,9 @@ public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
                 self.saveResult(isSuccess:false,error:self.errorMessage)
             }
         }
-=======
           saveToPath(UIImage(data: newImage) ?? image,name: name)
->>>>>>> e246196 (added saveFile to path)
-=======
-          saveToPath(UIImage(data: newImage) ?? image,name: name)
->>>>>>> 85c2c8995e8cead692a445eb67b10560fc95cfd2
+
+
       } else {
         result(FlutterMethodNotImplemented)
       }
