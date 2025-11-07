@@ -47,7 +47,7 @@ android {
     }
 
     kotlin {
-        jvmToolchain17)
+        jvmToolchain(17)
     }
 
     defaultConfig {
